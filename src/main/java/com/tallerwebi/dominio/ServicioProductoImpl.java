@@ -23,11 +23,29 @@ public class ServicioProductoImpl implements ServicioProducto {
     public List<ProductoDTO> buscarProductoPorStock(Integer stock) {
         List<ProductoDTO> productosDTO=new ArrayList<>();
 
-        List<Producto> productosObtenidos=new ArrayList<>();
-        productosObtenidos=repositorioProducto.obtenerProductosPorStock(stock);
+        List<Producto> productosObtenidos=repositorioProducto.obtenerProductosPorStock(stock);
         if(productosObtenidos!=null){
             for(Producto p:productosObtenidos){
                 ProductoDTO producto=new ProductoDTO();
+                producto.setId(p.getId());
+                producto.setNombre(p.getNombre());
+                producto.setPrecio(p.getPrecio());
+                producto.setStock(p.getStock());
+                productosDTO.add(producto);
+            }
+
+        }
+        return productosDTO;
+    }
+
+    @Override
+    public List<ProductoDTO> buscarProductosPorCriterio(String nombre) {
+        List<ProductoDTO> productosDTO = new ArrayList<>();
+
+        List<Producto> productosObtenidos = repositorioProducto.obtenerProductosPorCriterio(nombre);
+        if (productosObtenidos != null) {
+            for (Producto p : productosObtenidos) {
+                ProductoDTO producto = new ProductoDTO();
                 producto.setId(p.getId());
                 producto.setNombre(p.getNombre());
                 producto.setPrecio(p.getPrecio());

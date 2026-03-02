@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface ServicioProducto {
     List<ProductoDTO> buscarProductoPorStock(Integer stock);
+
+    List<ProductoDTO> buscarProductosPorCriterio(String nombre);
 }

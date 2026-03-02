@@ -30,4 +30,11 @@ public class RepositorioProductoImpl implements RepositorioProducto {
         List<Producto> list=session.createQuery("from Producto where stock=:stock").setParameter("stock", stock).list();
         return list;
     }
+
+    @Override
+    public List<Producto> obtenerProductosPorCriterio(String nombre) {
+        Session session= sessionFactory.getCurrentSession();
+        List<Producto> list=session.createQuery("from Producto where nombre=:nombre").setParameter("nombre", nombre).list();
+        return list;
+    }
 }

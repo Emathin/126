@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -24,7 +25,7 @@ public class ControladorProducto {
 
     @GetMapping("/stock/mayor-a/{valor}")
     public ModelAndView buscarProductoPorStock(@PathVariable("valor") Integer valor){
-        ModelAndView mav= new ModelAndView("ProductosObtenidosPorStock");
+        ModelAndView mav= new ModelAndView("productosObtenidosPorStock");
         List<ProductoDTO> productosDTOObtenidos;
         productosDTOObtenidos=servicioProducto.buscarProductoPorStock(valor);
         mav.addObject("productosObtenidos",productosDTOObtenidos);
@@ -37,6 +38,14 @@ public class ControladorProducto {
        ModelAndView mav= new ModelAndView("funcionalidadA");
        return mav;
     }
+
+    @PostMapping("/buscar")
+    public ModelAndView buscar(String nombre){
+        ModelAndView mav= new ModelAndView("productosObtenidosPorCriterio");
+        mav.addObject("productos",servicioProducto.buscarProductosPorCriterio(nombre));
+        return mav;
+    }
+
 
     public ServicioProducto getServicioProducto() {
         return servicioProducto;

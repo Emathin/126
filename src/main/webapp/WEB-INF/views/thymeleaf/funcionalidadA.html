@@ -8,6 +8,14 @@
 <div class="table-responsive">
 <h1 class="mb-4 text-primary">Obtener productos por path variable</h1>
 <a href="/productos/stock/mayor-a/20">Stock mayor a 20</a>
+
+
+    <form method="POST" th:action="@{/productos/buscar}">
+
+        <label for="nombre">Buscar por nombre:</label>
+        <input id="nombre" name="nombre" type="text">
+        <input type="submit" value="Buscar">
+    </form>
 </div>
 </body>
 </html>
